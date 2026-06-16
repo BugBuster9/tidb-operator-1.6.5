@@ -8,7 +8,7 @@ ADD . /src
 RUN export BUILDFLAGS=${BUILDFLAGS} && export LDFLAGS=${LDFLAGS} && export GOPROXY=${GOPROXY} && cd /src && go mod download
 RUN export BUILDFLAGS=${BUILDFLAGS} && export LDFLAGS=${LDFLAGS} && export GOPROXY=${GOPROXY} && cd /src && rm -rf images/tidb-operator/bin && make build && mv /src/images/tidb-operator/bin/*/* /src/images/tidb-operator/bin/
 
-FROM alpine:latest
+FROM alpine:3.24.1
 
 ADD https://raw.githubusercontent.com/njhallett/apk-fastest-mirror/c4ca44caef3385d830fea34df2dbc2ba4a17e021/apk-fastest-mirror.sh /
 RUN sh /apk-fastest-mirror.sh -t 50 && apk add --no-cache --progress tzdata bind-tools
